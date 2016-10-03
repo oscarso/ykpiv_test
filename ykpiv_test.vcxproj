@@ -106,13 +106,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>yubico-piv-tool-win64\include\ykpiv</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>yubico-piv-tool-win64\include\ykpiv;inc\yk</AdditionalIncludeDirectories>
+      <AdditionalOptions>/D _CRT_SECURE_NO_WARNINGS</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>yubico-piv-tool-win64\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libykpiv.dll.a;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libykpiv.dll.a;winscard.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -158,7 +159,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="clogger\clogger.c" />
     <ClCompile Include="ykpiv_test.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="clogger\clogger.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
