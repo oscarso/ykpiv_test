@@ -106,14 +106,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>yubico-piv-tool-win64\include\ykpiv;inc\yk</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>yubico-piv-tool-win64\include\ykpiv;yubico-piv-tool-win64\include;inc\yk</AdditionalIncludeDirectories>
       <AdditionalOptions>/D _CRT_SECURE_NO_WARNINGS</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>yubico-piv-tool-win64\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libykpiv.dll.a;winscard.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>winscard.lib;libykpiv.dll.a;;%(AdditionalDependencies);crypt32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -159,11 +159,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="clogger\clogger.c" />
-    <ClCompile Include="ykpiv_test.c" />
+    <ClCompile Include="cpplogger\cpplogger.cpp" />
+    <ClCompile Include="helper.cpp" />
+    <ClCompile Include="ykpiv_test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="clogger\clogger.h" />
+    <ClInclude Include="cardfilesys.h" />
+    <ClInclude Include="cpplogger\cpplogger.h" />
+    <ClInclude Include="helper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
